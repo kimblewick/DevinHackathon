@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b0b10">
+<title>SPLAT</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="flash"></div>
+<main>
+
+  <section id="s-join" class="screen">
+    <div class="wordmark"><span class="mark"></span><span class="name">SPLAT</span><span class="tag">AR paintball</span></div>
+    <div id="live-cta" class="card hidden">
+      <h4>Live camera needs the secure address</h4>
+      <p class="dim small" style="margin-bottom:12px">Open it first, then join. Safari will warn once — tap <b style="color:#fff">Show Details → visit this website</b>, then allow the camera.</p>
+      <a id="live-link" class="btn" href="#">Open secure version</a>
+    </div>
+    <div class="card">
+      <label class="field"><span>Name</span><input id="name" placeholder="What do we call you?" maxlength="24" autocomplete="off"></label>
+      <label class="field"><span>Marker number</span><input id="number" type="number" inputmode="numeric" min="1" max="20" placeholder="1 – 20, printed under your marker"></label>
+      <button id="btn-join" class="btn">Join the match</button>
+      <p id="join-msg" class="msg"></p>
+    </div>
+  </section>
+
+  <section id="s-lobby" class="screen hidden">
+    <div class="wordmark"><span class="mark"></span><span class="name">Lobby</span></div>
+    <p id="lobby-you" class="you-line"></p>
+    <span class="status">Waiting for the host to start</span>
+    <h3>Players</h3>
+    <ul id="lobby-players" class="plist"></ul>
+    <div class="card quiet">
+      <h4>How it works</h4>
+      <ol class="steps">
+        <li><span><b>Tap an opponent's marker</b> on screen to fire a paintball at it.</span></li>
+        <li><span>Every hit paints their code in your color and takes <b>1 HP</b>.</span></li>
+        <li><span>Everyone starts with <b>3 HP</b>. Paint them over completely to splat them.</span></li>
+        <li><span>Last one standing wins.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="s-game" class="screen hidden">
+    <div id="cam-wrap">
+      <video id="cam" autoplay playsinline muted></video>
+      <canvas id="ar"></canvas>
+      <div id="top-hud">
+        <div class="panel"><span class="k">Standing</span><span id="hud-alive" class="v"></span></div>
+        <div class="panel" id="my-hp"></div>
+      </div>
+      <div id="hud-msg"></div>
+      <ul id="feed" class="feed"></ul>
+      <div id="arm" class="overlay">
+        <div class="arm-card">
+          <div class="title accent">Ready?</div>
+          <p>Tap opponents' markers to shoot. Every hit paints their code in your color.<br><span class="dim small">Allow motion &amp; compass so you show up on the host map.</span></p>
+          <button class="btn" id="btn-arm">Arm up</button>
+        </div>
+      </div>
+      <div id="photo-ui" class="hidden">
+        <button id="btn-shoot" class="btn danger">Take a shot (photo mode)</button>
+        <a id="live-link-game" class="btn secondary" href="#">Switch to live camera</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="s-dead" class="screen hidden">
+    <div class="title danger">Splatted.</div>
+    <p class="sub">You're out this round — watch the standings.</p>
+    <h3>Still standing</h3>
+    <ul id="dead-standings" class="plist"></ul>
+  </section>
+
+  <section id="s-end" class="screen hidden">
+    <div class="title accent">Game.</div>
+    <p id="winner" class="sub"></p>
+    <h3>Final standings</h3>
+    <ul id="end-standings" class="plist"></ul>
+    <p class="status" style="margin-top:14px">Waiting for the host to reset</p>
+  </section>
+
+</main>
+<input id="shot-capture" type="file" accept="image/*" capture="environment" hidden>
+<script src="/vendor/aruco.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

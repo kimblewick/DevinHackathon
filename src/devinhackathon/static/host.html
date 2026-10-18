@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b10">
+<title>SPLAT — Host</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="host">
+<div class="dash">
+
+  <header class="dash-top">
+    <div class="wordmark"><span class="mark"></span><span class="name">SPLAT</span><span class="tag">Host</span></div>
+    <div class="stats">
+      <div class="stat"><span class="k">Phase</span><span id="phase" class="v"></span></div>
+      <div class="stat"><span class="k">Standing</span><span class="v"><span id="alive"></span><span class="of">/</span><span id="total"></span></span></div>
+      <div class="stat"><span class="k">Winner</span><span id="winner" class="v">—</span></div>
+    </div>
+    <div class="row top-actions">
+      <button id="btn-start" class="btn">Start game</button>
+      <button id="btn-reset" class="btn secondary">Reset</button>
+      <button id="btn-wipe" class="btn secondary kick">Kick all</button>
+    </div>
+  </header>
+
+  <aside class="dash-left">
+    <div class="joinbox">
+      <div class="qr-wrap"><div id="qr" class="qr"></div></div>
+      <span class="k">Scan to join</span>
+      <div id="join-url" class="joinurl"></div>
+      <ol class="steps compact">
+        <li><span>Accept the certificate warning</span></li>
+        <li><span>Enter your name + marker number</span></li>
+        <li><span>Tap <b>Arm up</b>, allow camera &amp; motion</span></li>
+      </ol>
+    </div>
+    <div class="card rules">
+      <h4>Rules</h4>
+      <div class="cfg">
+        <label class="field"><span>HP</span><input id="cfg-hits" type="number" min="1" value="3"></label>
+        <label class="field"><span>Cooldown</span><input id="cfg-cd" type="number" min="0" step="0.1" value="0.3"></label>
+        <button id="btn-cfg" class="btn secondary sm">Apply</button>
+      </div>
+      <p id="admin-msg" class="msg"></p>
+    </div>
+  </aside>
+
+  <section class="dash-map">
+    <div class="map-card">
+      <canvas id="map"></canvas>
+      <div class="map-title"><span class="k">Live map</span><span class="dim small">approximate · relative · corrected by camera sightings</span></div>
+      <div class="map-legend"><span><i class="lg-move"></i>moving</span><span><i class="lg-see"></i>sees</span><span><i class="lg-hit"></i>hit</span></div>
+    </div>
+  </section>
+
+  <aside class="dash-right">
+    <div class="card fill">
+      <h4>Players</h4>
+      <div class="scroll">
+        <table class="board">
+          <thead><tr><th>Player</th><th>#</th><th>HP</th><th>Splats</th></tr></thead>
+          <tbody id="board"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card fill feedcard">
+      <h4>Feed</h4>
+      <ul id="feed" class="feed-static scroll"></ul>
+    </div>
+    <a class="link small" href="/markers" target="_blank">Printable marker sheet →</a>
+  </aside>
+
+</div>
+<script src="/vendor/qrcode.js"></script>
+<script src="/host.js"></script>
+</body>
+</html>
